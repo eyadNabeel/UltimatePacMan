@@ -1,0 +1,47 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ULTIMATE PACMAN README~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is my implementation of the well-known game of Pacman. Most if not all the game mechanics are identical to the original Pacman.
+The differences are:
+
+- Power pellets are not implemented
+- There is a ghost mode which isn't in the original Pacman
+- The way the ghost AI is implemented is quite basic, not the same as the original Pacman
+- In Ghost Mode, the ghosts can actually move through walls, making the game more difficult, but pacman's speed is boosted so that 
+it isn't too difficult.
+
+The game is fully controlled via keyboard including menu navigation. The escape key always takes you to the main menu, and the return/enter
+key enters game modes or different screens while the arrows are used for gameplay and navigation.
+
+Below is a detailed explanation of the use of the core concepts required for this project:
+
+CORE CONCEPT 1: 2D Arrays
+
+2D arrays were used to represent the map data; the locations of the walls, spaces, gates, and portals. There is only one 
+map, therefore, its data is hard-coded into the game, specifically, in the PacManBoard class which converts the number values into 
+meaningful cells holding a value that determines whether it's a wall, a gate, a portal, or just an empty space. 
+The main advantage for 2D arrays in those areas is that they inherently contain position data (index), as well as the data 
+that position contains.
+
+CORE CONCEPT 2: Collections
+
+Collections are used to store the locations of the beads or the things the Pacman eats. A LinkedList holds a set of locations 
+of the beads, and each time Pacman eats one, the location gets deleted from the list. LinkedLists are also used to store the high scores
+once they're extracted from the file. The advantage collections give over arrays is mutable length; as in you can delete or add items to the 
+list as you please which works very well with my implementation of the beads and is very flexible it terms of the number of high scores I 
+choose to represent, not only that, but also, the LinkedList could easily be manipulated such that the lowest score is removed.
+
+CORE CONCEPT 3: File I/O
+
+Since the game doesn't have different maps, File I/O is mostly used to store and modify high scores since there is no other way to 
+store high scores past one session of the game without any external file doing that. High scores are stored alongside dates such that 
+the dates are on even index lines and the scores are on the previous odd index line.
+
+CORE CONCEPT 4: Inheritance and Dynamic Dispatch
+
+Much of the game revolves around inheritance and dynamic dispatch. All of the objects in the game implement the GameObjectApi interface. 
+One of which is AnimateObject which is a class for objects that exhibit movement throughout the game. AnimateObject has a couple of functions
+such as move(), the purpose of which is trivial, oscillate(), which helps transfer to the next phase of the animation, and currentImage(), 
+which returns the file of the object at any given point. Dynamic dispatch was especially helpful when actually drawing the objects on the 
+frame, as it only required one function (DrawAnimateObject()) for the Pacman AND the ghosts. Wherever there was a different function, 
+the original was overridden. Dynamic dispatch also compacted the code for movemsent; since both animate objects have the same implementation
+for movement.
