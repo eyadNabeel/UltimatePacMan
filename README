@@ -1,11 +1,11 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ULTIMATE PACMAN README~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is my implementation of the well-known game of Pacman. Most if not all the game mechanics are identical to the original Pacman.
+This is my implementation of the well-known game of Pacman. Most if not all of the game mechanics are identical to the original Pacman.
 The differences are:
 
 - Power pellets are not implemented
 - There is a ghost mode which isn't in the original Pacman
-- The way the ghost AI is implemented is quite basic, not the same as the original Pacman
+- The way the ghost AI is implemented is quite primitive, not the same as the original Pacman
 - In Ghost Mode, the ghosts can actually move through walls, making the game more difficult, but pacman's speed is boosted so that 
 it isn't too difficult.
 
@@ -45,3 +45,5 @@ which returns the file of the object at any given point. Dynamic dispatch was es
 frame, as it only required one function (DrawAnimateObject()) for the Pacman AND the ghosts. Wherever there was a different function, 
 the original was overridden. Dynamic dispatch also compacted the code for movemsent; since both animate objects have the same implementation
 for movement.
+
+(CHANGE 01)
